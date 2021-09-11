@@ -1,68 +1,49 @@
 <script lang="ts" setup>
-import { reactive, ref } from "vue-demi";
-import AvatarUploader from "../components/Base/AvatarUploader.vue";
+import { computed, onMounted, reactive } from "vue-demi";
 import { useRouter } from "vue-router";
-import { toast } from "../logic/utils";
+import { toast } from "../logic/utils"
 import { userAuth } from "../store/auth";
 
 const auth = userAuth();
-const router = useRouter();
 
 const user = reactive({
-  name: "",
   email: "",
   password: "",
-  file: ""
 });
 
-const confirmPassword = ref("");
+const router = useRouter();
 
-function register(e: any) {
+function login(e: any) {
   e.preventDefault();
-  if (user.name === "" || user.password === "" || user.password === "") {
-    toast("Please required fields to continue", "danger");
+  if (user.email === "" || user.password === "") {
+    toast("Either email or password is empty", "danger")
     return;
   }
-  if (confirmPassword.value !== user.password) {
-    toast("Password not matched", "danger");
-    return;
-  }
-  auth.signup(user, (success: boolean, msg: string)=> {
+  auth.login(user, (success: boolean, msg: string) => {
     if (success) {
       toast(msg, "success")
-      user.name = ""
       user.email = ""
       user.password = ""
-      user.file = ""
-      confirmPassword.value = ""
-      router.push("/blogs")
-    }else {
+      router.push("/blogs");
+    } else {
       toast(msg, "danger")
+      console.error(msg);
     }
   });
 }
 
-
-
-function handleChange(file: any) {
-  user.file = file
+function jugad() {
+  user.email= "ali@ali.com",
+  user.password= "123123123"
 }
-</script>
 
+
+</script>
 <template>
   <div class="flex w-full h-screen bg-gray-50 justify-center items-center">
     <div class="flex w-auth-width flex-col">
       <div class="bg-white px-6 py-8 rounded-md shadow-md text-black w-full">
-        <h1 class="mb-8 text-3xl text-center">Sign up</h1>
-        <avatar-uploader @handle-change="handleChange" class="mb-6" />
-        <base-input
-          placeholder="e.g. Jawad Ali"
-          label-text="Enter your name here"
-          id="name"
-          error-message="Name is required"
-          v-model="user.name"
-          type="text"
-        />
+        <h1 class="mb-8 text-3xl text-center" @dblclick="jugad">Login</h1>
         <base-input
           placeholder="e.g. johndoe@example.com"
           error-message="Email is required"
@@ -80,17 +61,9 @@ function handleChange(file: any) {
           id="password"
           type="password"
         />
-        <base-input
-          placeholder="Password"
-          label-text="Confirm Password"
-          id="confirm-password"
-          error-message="Password of min 8 char is required"
-          v-model="confirmPassword"
-          type="password"
-        />
 
         <button
-          @click="register"
+          @click="login"
           type="submit"
           class="
             w-full
@@ -105,29 +78,27 @@ function handleChange(file: any) {
             my-1
           "
         >
-          Register Now
+          Login
         </button>
         <div class="text-center my-4 text-sm text-gray-500">
           <p>
-            Already Registered?
+            Not Registered?
             <a
-              @click="$router.push('/login')"
+              @click="$router.push('/signup')"
               class="cursor-pointer text-blue-800 hover:underline"
-              >Sign In</a
+              >Sign up now</a
             >
-            instead
           </p>
         </div>
       </div>
       <div class="text-center mt-4">
         <a
           class="text-sm cursor-pointer text-blue-800 underline"
-          @click="$router.push('/questions')"
+          @click="$router.push('/blogs')"
           >Skip For Now</a
         >
       </div>
     </div>
   </div>
 </template>
-
 
