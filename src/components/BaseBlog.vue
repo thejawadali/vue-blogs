@@ -13,9 +13,9 @@ const props = defineProps({
   <div class="mb-16 flex flex-col md:flex-row md:w-100 md:h-44">
     <!-- Blog image -->
     <img
-      :src="blog.image"
+      :src="'http://localhost:3000/'+blog.image"
       alt="img"
-      class="cursor-pointer w-full object-cover h-96 rounded-sm md:w-72 md:h-44"
+      class="cursor-pointer w-full object-cover h-80 rounded-sm md:w-72 md:h-44"
     />
     <div class="flex flex-col md:ml-10 justify-between pb-6">
       <!-- blog category -->
