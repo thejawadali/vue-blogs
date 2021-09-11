@@ -122,7 +122,7 @@ function handleChange(file: any) {
       <div class="text-center mt-4">
         <a
           class="text-sm cursor-pointer text-blue-800 underline"
-          @click="$router.push('/questions')"
+          @click="$router.push('/blogs')"
           >Skip For Now</a
         >
       </div>
