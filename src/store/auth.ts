@@ -64,7 +64,7 @@ export const userAuth = defineStore({
     // user log out
     logout() {
       localStorage.clear()
-      reloadBrowser("/questions")
+      reloadBrowser("/blogs")
     }
   },
 })
