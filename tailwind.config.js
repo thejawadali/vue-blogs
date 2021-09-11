@@ -5,7 +5,7 @@ module.exports = {
     extend: {
       width: {
         'auth-width': '35rem',
-        '100': '60rem'
+        '100': '50rem'
       }
     },
   },
