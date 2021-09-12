@@ -10,8 +10,13 @@ const routes = [
   },
   {
     path: '/blogs',
-    name: 'home',
-    component: () => import("./views/Home.vue")
+    name: 'blogs-list',
+    component: () => import("./views/blogs/List.vue")
+  },
+  {
+    path: '/blogs/add',
+    name: 'add-blog',
+    component: () => import("./views/blogs/Add.vue")
   },
   {
     path: '/login',

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue-demi";
-import { blogStore } from "../store/blogs";
-import BaseBlog from "../components/BaseBlog.vue";
+import { blogStore } from "../../store/blogs";
+import BaseBlog from "../../components/BaseBlog.vue";
 import { useRouter } from "vue-router";
 const blog_store = blogStore();
 const fetchedBlogs = ref([] as any);
