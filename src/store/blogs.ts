@@ -9,7 +9,7 @@ axios.defaults.baseURL = 'http://localhost:3000'
 export const blogStore = defineStore({
   id: 'Blogs',
   actions: {
-    async getAllBlogs(cb: (success: boolean, msg: any)=> any) {
+    async getAllBlogs(cb: (success: boolean, msg: any) => any) {
       try {
         const { data } = await axios.get("/blog")
         if (data) {
@@ -18,6 +18,16 @@ export const blogStore = defineStore({
       } catch (error) {
         toast("Some Error Occured", "danger")
       }
-    }
+    },
+    async getSingleBlog(_id: string, cb: (success: boolean, msg: any) => any) {
+      try {
+        const { data } = await axios.get(`/blog/${_id}`)
+        if (data) {
+          cb(true, data)
+        }
+      } catch (error) {
+        toast("Some Error Occured", "danger")
+      }
+    },
   },
 })

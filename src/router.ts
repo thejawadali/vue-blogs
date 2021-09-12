@@ -30,6 +30,11 @@ const routes = [
     }
   },
   {
+    path: '/blogs/:blogId',
+    name: 'blog-details',
+    component: () => import("./views/BlogDetails.vue")
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: 'page-not-found',
     component: () => import("./views/404.vue"),
