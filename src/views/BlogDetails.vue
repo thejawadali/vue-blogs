@@ -3,15 +3,17 @@ import { computed, onMounted, ref } from "vue-demi";
 import {isEmpty} from "lodash";
 import BaseComment from "../components/Base/BaseComment.vue";
 import { blogStore } from "../store/blogs";
-import { toast } from "../logic/utils";
+import { reloadBrowser, toast } from "../logic/utils";
 import dayjs from "dayjs";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { LS } from "../store/auth";
 
 const blog_store = blogStore();
 const blog = ref({} as any);
+const comment= ref("")
 
 const route = useRoute();
+const router = useRouter()
 
 const myProfilePic = computed(() => {
   if (localStorage.getItem(LS.userProfile)) {
@@ -22,6 +24,33 @@ const myProfilePic = computed(() => {
   }
   return "";
 });
+
+function addComment() {
+  if (comment.value === "") {
+    toast("Can not post empty comment", "danger");
+    return;
+  }
+  if (localStorage.getItem(LS.authToken)) {
+    blog_store.postComment(
+      route.params.blogId as string,
+      comment.value,
+      (success: boolean, msg: string) => {
+        if (!success) {
+          toast(msg, "danger");
+          comment.value = ""
+          return;
+        }
+        toast(msg, "success");
+        setTimeout(() => {
+          reloadBrowser();
+        }, 300);
+      }
+    );
+  } else {
+    router.push("/login");
+  }
+}
+
 onMounted(() => {
   const id = route.params.blogId as string;
   blog_store.getSingleBlog(id, (success: boolean, msg: any) => {
@@ -104,8 +133,7 @@ onMounted(() => {
           <form @submit.prevent="" class="w-full">
             <textarea
               class="w-full resize-none border border-gray-300 p-3 rounded-md"
-              name=""
-              id=""
+              v-model="comment"
               cols="30"
               rows="5"
             ></textarea>
@@ -122,6 +150,7 @@ onMounted(() => {
                   rounded-md
                   text-white
                 "
+                @click="addComment"
               >
                 Submit
               </button>

@@ -12,7 +12,7 @@ const props = defineProps({
   }
 });
 
-const pic = computed(() => props.photo || "/avatar.png");
+const pic = computed(() => props.photo ? 'http://localhost:3000/' + props.photo : "/avatar.png");
 </script>
 <template>
   <img
