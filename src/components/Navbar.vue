@@ -1,17 +1,33 @@
 <script lang="ts" setup>
 import { computed, ref } from "vue";
 import searchIcon from "virtual:vite-icons/ion/ios-search-strong";
-// import { useRouter } from "vue-router";
+import { LS } from "../store/auth";
+import { useRouter } from "vue-router";
+import { reloadBrowser } from "../logic/utils"
+
+const router = useRouter();
 
 const search = ref("");
 
+const loggedIn = computed(()=> localStorage.getItem(LS.authToken))
+
+function logout() {
+  localStorage.clear()
+  reloadBrowser()
+}
 
 function searchBlog() {
   console.log(search.value);
-  search.value = ""
-  
+  search.value = "";
 }
 
+function createBlog() {
+  if (localStorage.getItem(LS.authToken)) {
+    router.push('/blogs/add')
+  } else {
+    router.push("/login");
+  }
+}
 </script>
 <template>
   <nav
@@ -39,7 +55,7 @@ function searchBlog() {
         Vue Blogs
       </h1>
       <form
-      @submit.prevent="searchBlog"
+        @submit.prevent="searchBlog"
         class="
           hidden
           md:flex
@@ -67,9 +83,35 @@ function searchBlog() {
         />
       </form>
     </div>
-    <button class="hover:bg-white text-white hover:text-gray-700 text-lg px-2">
-      Login
-    </button>
+    <div class="flex">
+      <button
+        @click="createBlog"
+        class="
+          bg-white
+          rounded-sm
+          active:bg-gray-100
+          text-gray-700 text-lg
+          px-2
+          mx-2
+        "
+      >
+        Create Blog
+      </button>
+      <button
+      v-if="!loggedIn"
+        @click="$router.push('/login')"
+        class="hover:bg-white rounded-sm text-white hover:text-gray-700 text-lg px-2 mx-2"
+      >
+        Login
+      </button>
+      <button
+      v-else
+        @click="logout"
+        class="hover:bg-white rounded-sm text-white hover:text-gray-700 text-lg px-2 mx-2"
+      >
+        Logout
+      </button>
+    </div>
   </nav>
 </template>
 
