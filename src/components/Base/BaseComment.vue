@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed } from "vue-demi";
 import dayjs from "dayjs";
 
 const props = defineProps({
@@ -9,16 +8,11 @@ const props = defineProps({
   },
 });
 
-const pic = computed(() => props.comment.user.profilePic || "/avatar.png");
 </script>
 
 <template>
   <div class="my-5 flex">
-    <img
-      :src="pic"
-      class="w-8 h-8 rounded-full cursor-pointer object-cover mr-5 mt-4"
-      alt="profile photo"
-    />
+    <profile-pic  class="mr-5 mt-4" :photo="comment.user.profilePic" />
     <div class="w-full border border-gray-300 px-3 py-5 rounded-md bg-white">
       <!-- user details -->
       <p class="mb-3 font-semibold text-md">

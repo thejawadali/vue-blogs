@@ -3,8 +3,10 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      height: {
+        '100': '30rem'
+      },
       width: {
-        'auth-width': '35rem',
         '100': '50rem'
       }
     },

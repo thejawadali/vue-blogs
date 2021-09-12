@@ -18,7 +18,7 @@ const pic = computed(() => props.photo || "/avatar.png");
   <img
     :src="pic"
     :class="`w-${props.wh} h-${props.wh}`"
-    class="rounded-full cursor-pointer object-cover mr-5 mt-4"
+    class="rounded-full cursor-pointer object-cover"
     alt="profile photo"
   />
 </template>
