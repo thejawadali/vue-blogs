@@ -7,7 +7,6 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "@vueform/multiselect": "^2.1.2",
     "axios": "^0.21.1",
     "dayjs": "^1.10.6",
     "lodash": "^4.17.21",

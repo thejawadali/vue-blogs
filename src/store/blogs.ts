@@ -6,6 +6,7 @@ import { LS } from "./auth"
 
 
 axios.defaults.baseURL = 'http://localhost:3000'
+// axios.defaults.headers.Authorization = localStorage.getItem(LS.authToken)
 
 export const blogStore = defineStore({
   id: 'Blogs',
@@ -25,6 +26,27 @@ export const blogStore = defineStore({
         const { data } = await axios.get(`/blog/${_id}`)
         if (data) {
           cb(true, data)
+        }
+      } catch (error) {
+        toast("Some Error Occured", "danger")
+      }
+    },
+    async postBlog(blogData: any, cb: (success: boolean, msg: any) => any) {
+      try {
+        const formData = new FormData()
+        formData.append("categoryId", blogData.catId)
+        formData.append("initialParagraph", blogData.firstParagraph)
+        formData.append("title", blogData.title)
+        formData.append("details", blogData.details)
+        if (blogData.image) { 
+          formData.append("image", blogData.image)
+        }
+        const { data } = await axios.post("/blog/", formData,{
+          headers: { Authorization: `${localStorage.getItem(LS.authToken)}` }
+        })
+        if (data) {
+          cb(true, data)
+          toast("Blog Created", "success")
         }
       } catch (error) {
         toast("Some Error Occured", "danger")

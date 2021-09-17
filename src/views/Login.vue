@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed, onMounted, reactive } from "vue-demi";
 import { useRouter } from "vue-router";
-import { toast } from "../logic/utils"
+import { toast } from "../logic/utils";
 import { userAuth } from "../store/auth";
 
 const auth = userAuth();
@@ -16,28 +16,25 @@ const router = useRouter();
 function login(e: any) {
   e.preventDefault();
   if (user.email === "" || user.password === "") {
-    toast("Either email or password is empty", "danger")
+    toast("Either email or password is empty", "danger");
     return;
   }
   auth.login(user, (success: boolean, msg: string) => {
     if (success) {
-      toast(msg, "success")
-      user.email = ""
-      user.password = ""
+      toast(msg, "success");
+      user.email = "";
+      user.password = "";
       router.push("/blogs");
     } else {
-      toast(msg, "danger")
+      toast(msg, "danger");
       console.error(msg);
     }
   });
 }
 
 function jugad() {
-  user.email= "ali@ali.com",
-  user.password= "123123123"
+  (user.email = "ali@ali.com"), (user.password = "123123123");
 }
-
-
 </script>
 <template>
   <div class="flex w-full h-screen bg-gray-50 justify-center items-center">

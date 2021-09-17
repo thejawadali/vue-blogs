@@ -7,7 +7,8 @@ module.exports = {
         '100': '30rem'
       },
       width: {
-        '100': '50rem'
+        '100': '50rem',
+        'auth-width': '30rem'
       }
     },
   },
