@@ -78,7 +78,7 @@ onMounted(() => {
           hover:underline
           inline-block
           cursor-pointer
-          text-blue-800
+          hover:text-blue-800
         "
       >
         #{{ blog.category.title }}
@@ -86,7 +86,7 @@ onMounted(() => {
     </p>
 
     <!-- title -->
-    <h1 class="my-3 text-5xl font-semibold">
+    <h1 class="my-8 text-3xl md:text-5xl font-semibold">
       {{ blog.title }}
     </h1>
     <!-- author -->
@@ -101,7 +101,7 @@ onMounted(() => {
 
     <!-- image -->
     <img
-      :src="'http://localhost:3000/' + blog.image"
+      :src="'http://localhost:3001/' + blog.image"
       alt="img"
       class="cursor-pointer w-full object-cover my-5 h-96 lg:h-100 rounded-sm"
     />
@@ -127,9 +127,9 @@ onMounted(() => {
         />
 
         <!-- add comment -->
-        <div class="flex my-5 inline-block">
+        <div class="flex my-5">
           <!-- photo -->
-          <profile-pic :photo="myProfilePic" class="mr-5 mt-4" />
+          <profile-pic :photo="myProfilePic" class="mr-5 mt-4 hidden md:block" />
           <form @submit.prevent="" class="w-full">
             <textarea
               class="w-full resize-none border border-gray-300 p-3 rounded-md"

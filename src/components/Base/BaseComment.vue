@@ -12,7 +12,7 @@ const props = defineProps({
 
 <template>
   <div class="my-5 flex">
-    <profile-pic  class="mr-5 mt-4" :photo="comment.user.profilePic" />
+    <profile-pic  class="mr-5 mt-4 hidden md:block" :photo="comment.user.profilePic" />
     <div class="w-full border border-gray-300 px-3 py-5 rounded-md bg-white">
       <!-- user details -->
       <p class="mb-3 font-semibold text-md">

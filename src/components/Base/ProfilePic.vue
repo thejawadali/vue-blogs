@@ -8,17 +8,16 @@ const props = defineProps({
   },
   wh: {
     type: Number,
-    default: 8
-  }
+    default: 8,
+  },
 });
-
-const pic = computed(() => props.photo ? 'http://localhost:3000/' + props.photo : "/avatar.png");
 </script>
+
+
 <template>
   <img
-    :src="pic"
-    :class="`w-${props.wh} h-${props.wh}`"
-    class="rounded-full cursor-pointer object-cover"
-    alt="profile photo"
+    :src="props.photo ? 'http://localhost:3001/' + props.photo : '/avatar.png'"
+    alt="profile"
+    :class="`w-${props.wh} h-${props.wh} rounded-full cursor-pointer object-cover`"
   />
 </template>

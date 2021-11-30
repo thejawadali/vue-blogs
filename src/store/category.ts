@@ -5,7 +5,7 @@ import { LS } from "./auth"
 
 
 
-axios.defaults.baseURL = 'http://localhost:3000'
+axios.defaults.baseURL = 'http://localhost:3001'
 
 export const categoryStore = defineStore({
   id: 'Tag',

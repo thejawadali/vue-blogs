@@ -103,7 +103,7 @@ onMounted(() => {
           </svg>
           <span class="mt-2 text-base leading-normal">Select Image</span>
         </label>
-        <input class="hidden" id="file" type="file" @change="loadFile"/>
+        <input class="hidden" id="file" type="file" accept="image/png, image/jpeg" @change="loadFile"/>
         <img
           v-if="imageURL"
           class="absolute object-cover w-96 h-60 shadow-lg rounded-lg z-0"

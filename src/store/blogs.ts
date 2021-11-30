@@ -5,7 +5,7 @@ import { LS } from "./auth"
 
 
 
-axios.defaults.baseURL = 'http://localhost:3000'
+axios.defaults.baseURL = 'http://localhost:3001'
 // axios.defaults.headers.Authorization = localStorage.getItem(LS.authToken)
 
 export const blogStore = defineStore({
