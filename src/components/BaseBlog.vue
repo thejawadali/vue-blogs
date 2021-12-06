@@ -28,6 +28,7 @@ const props = defineProps({
         class="
           text-xl
           font-semibold
+          capitalize
           hover:underline
           cursor-pointer
           max-h-24 max-w-md

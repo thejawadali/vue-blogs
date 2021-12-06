@@ -88,7 +88,7 @@ onMounted(() => {
     </p>
 
     <!-- title -->
-    <h1 class="my-8 text-3xl md:text-5xl font-semibold">
+    <h1 class="my-8 text-3xl md:text-5xl font-semibold capitalize">
       {{ blog.title }}
     </h1>
     <!-- author -->
