@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { timeDifference } from "../logic/utils";
+const baseURL = import.meta.env.APP_BASE_URL?.toString()
 const props = defineProps({
   blog: {
     type: Object,
@@ -12,7 +13,7 @@ const props = defineProps({
   <div class="mb-16 flex flex-col md:flex-row md:w-[50rem] md:h-44">
     <!-- Blog image -->
     <img
-      :src="'http://localhost:3001/' + blog.image"
+      :src="`${baseURL}/${blog.image}`"
       alt="img"
       class="cursor-pointer w-full object-cover h-80 rounded-sm md:w-72 md:h-44"
     />
@@ -52,7 +53,7 @@ const props = defineProps({
           <img
             :src="
               blog.author.profilePic
-                ? 'http://localhost:3001/' + blog.author.profilePic
+                ? `${baseURL}/${ blog.author.profilePic}`
                 : '/avatar.png'
             "
             class="w-8 h-8 rounded-full cursor-pointer object-cover"

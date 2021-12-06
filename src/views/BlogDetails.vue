@@ -12,6 +12,8 @@ const blog_store = blogStore();
 const blog = ref({} as any);
 const comment= ref("")
 
+const baseURL = import.meta.env.APP_BASE_URL?.toString()
+
 const route = useRoute();
 const router = useRouter()
 
@@ -101,7 +103,7 @@ onMounted(() => {
 
     <!-- image -->
     <img
-      :src="'http://localhost:3001/' + blog.image"
+      :src="`${baseURL}/${blog.image}`"
       alt="img"
       class="cursor-pointer w-full object-cover my-5 h-96 lg:h-100 rounded-sm"
     />

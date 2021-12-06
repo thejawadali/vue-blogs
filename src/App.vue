@@ -13,5 +13,7 @@
 </template>
 
 <script lang="ts" setup>
+import { onMounted } from "vue-demi";
 import Navbar from "./components/Navbar.vue";
+
 </script>

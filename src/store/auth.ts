@@ -7,7 +7,7 @@ export enum LS {
   authToken = 'authToken'
 }
 
-axios.defaults.baseURL = 'http://localhost:3001'
+axios.defaults.baseURL = import.meta.env.APP_BASE_URL?.toString()
 
 export const userAuth = defineStore({
   id: 'Auth',
