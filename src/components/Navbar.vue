@@ -54,7 +54,7 @@ function createBlog() {
       >
         Vue Blogs
       </h1>
-      <form
+      <!-- <form
         @submit.prevent="searchBlog"
         class="
           hidden
@@ -81,7 +81,7 @@ function createBlog() {
             text-sm text-white
           "
         />
-      </form>
+      </form> -->
     </div>
     <div class="flex">
       <button
