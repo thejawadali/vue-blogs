@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "browser-image-compression": "^1.0.17",
     "dayjs": "^1.10.6",
     "lodash": "^4.17.21",
     "mosha-vue-toastify": "^1.0.21",

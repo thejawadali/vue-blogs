@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import axios from 'axios'
 import { reloadBrowser, toast } from "../logic/utils"
 import { LS } from "./auth"
+import imageCompression from 'browser-image-compression';
 
 
 
@@ -39,7 +40,11 @@ export const blogStore = defineStore({
         formData.append("title", blogData.title)
         formData.append("details", blogData.details)
         if (blogData.image) { 
-          formData.append("image", blogData.image)
+          const fileToUpload = await imageCompression(blogData.image, {
+            maxSizeMB: 1,
+            maxWidthOrHeight: 1024,
+          });
+          formData.append("image", fileToUpload)
         }
         const { data } = await axios.post("/blog/", formData,{
           headers: { Authorization: `${localStorage.getItem(LS.authToken)}` }
